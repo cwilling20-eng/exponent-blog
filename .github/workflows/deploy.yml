@@ -27,6 +27,6 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./blog/
-          server-dir: public_html/blog/
+          server-dir: ./
           timeout: 600000
           dangerous-clean-slate: true
