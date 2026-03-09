@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{SEO_TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <meta name="post-date" content="{{POST_DATE}}">
+  <meta name="post-image" content="images/{{SLUG}}.jpg">
+  <meta name="post-category" content="{{CATEGORY}}">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{SEO_TITLE}}">
+  <meta property="og:description" content="{{META_DESCRIPTION}}">
+  <meta property="og:image" content="https://exponentmarketing.com/blog/posts/images/{{SLUG}}.jpg">
+  <meta property="og:url" content="https://exponentmarketing.com/blog/posts/{{SLUG}}.html">
+  <meta property="og:type" content="article">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{SEO_TITLE}}">
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+  <meta name="twitter:image" content="https://exponentmarketing.com/blog/posts/images/{{SLUG}}.jpg">
+
+  <link rel="canonical" href="https://exponentmarketing.com/blog/posts/{{SLUG}}.html">
+  <link rel="stylesheet" href="/blog/post.css">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{POST_TITLE}}",
+    "description": "{{META_DESCRIPTION}}",
+    "image": "https://exponentmarketing.com/blog/posts/images/{{SLUG}}.jpg",
+    "datePublished": "{{POST_DATE}}",
+    "author": {
+      "@type": "Organization",
+      "name": "Exponent Marketing & AI",
+      "url": "https://exponentmarketing.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Exponent Marketing & AI",
+      "url": "https://exponentmarketing.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://exponentmarketing.com/blog/posts/{{SLUG}}.html"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- SVG Header -->
+  <div class="post-header-svg">
+    {{SVG_CODE}}
+  </div>
+
+  <div class="post-container">
+    <a href="/blog/" class="back-link">&larr; Back to Blog</a>
+
+    <!-- STOCK_PHOTO_INSERT -->
+    <img src="images/{{SLUG}}.jpg" alt="{{POST_TITLE}}" class="post-hero-image">
+
+    <div class="post-meta">
+      <span class="post-category">{{CATEGORY}}</span>
+      <span class="post-date">{{POST_DATE_FORMATTED}}</span>
+    </div>
+
+    <article class="post-content">
+      {{HTML_CONTENT}}
+    </article>
+  </div>
+
+</body>
+</html>

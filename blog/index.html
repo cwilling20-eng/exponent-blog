@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Exponent Marketing & AI</title>
+  <meta name="description" content="Marketing tips, AI insights, and growth strategies for local businesses from Exponent Marketing & AI.">
+  <meta property="og:title" content="Blog — Exponent Marketing & AI">
+  <meta property="og:description" content="Marketing tips, AI insights, and growth strategies for local businesses.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://exponentmarketing.com/blog/">
+  <link rel="canonical" href="https://exponentmarketing.com/blog/">
+  <style>
+    :root {
+      --accent: #1a56db;
+      --accent-hover: #1447b8;
+      --text: #1f2937;
+      --text-light: #6b7280;
+      --bg: #f9fafb;
+      --card-bg: #ffffff;
+      --radius: 12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .blog-header {
+      background: #111827;
+      color: #fff;
+      padding: 64px 20px;
+      text-align: center;
+    }
+
+    .blog-header h1 {
+      font-size: 40px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .blog-header h1 span {
+      color: var(--accent);
+    }
+
+    .blog-header p {
+      font-size: 18px;
+      color: #9ca3af;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* Grid */
+    .blog-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    /* Card */
+    .blog-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .blog-card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .category-pill {
+      background: var(--accent);
+      color: #fff;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card-date {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    .blog-card h2 {
+      font-size: 20px;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .blog-card h2 a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .blog-card h2 a:hover {
+      color: var(--accent);
+    }
+
+    .blog-card-excerpt {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .read-more {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .read-more:hover {
+      text-decoration: underline;
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 48px;
+    }
+
+    .pagination button {
+      padding: 10px 18px;
+      border: 1px solid #d1d5db;
+      background: var(--card-bg);
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      color: var(--text);
+      transition: all 0.15s;
+    }
+
+    .pagination button:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .pagination button.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .pagination button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* States */
+    .loading-state,
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-light);
+    }
+
+    .loading-state p,
+    .empty-state p {
+      font-size: 18px;
+    }
+
+    .empty-state h2 {
+      font-size: 24px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .blog-header { padding: 48px 20px; }
+      .blog-header h1 { font-size: 30px; }
+      .blog-header p { font-size: 16px; }
+      .blog-grid { grid-template-columns: 1fr; gap: 24px; }
+      .blog-container { padding: 32px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="blog-header">
+    <h1>Exponent <span>Blog</span></h1>
+    <p>Marketing tips, AI insights, and growth strategies for local businesses.</p>
+  </header>
+
+  <main class="blog-container">
+    <div id="loading" class="loading-state">
+      <p>Loading posts...</p>
+    </div>
+    <div id="empty" class="empty-state" style="display:none;">
+      <h2>No posts yet</h2>
+      <p>Check back soon — new content is on the way.</p>
+    </div>
+    <div id="grid" class="blog-grid" style="display:none;"></div>
+    <div id="pagination" class="pagination" style="display:none;"></div>
+  </main>
+
+  <script>
+    (function () {
+      var POSTS_PER_PAGE = 12;
+      var currentPage = 1;
+      var posts = [];
+
+      var grid = document.getElementById('grid');
+      var loading = document.getElementById('loading');
+      var empty = document.getElementById('empty');
+      var pagination = document.getElementById('pagination');
+
+      function formatDate(dateStr) {
+        if (!dateStr) return '';
+        var d = new Date(dateStr + 'T00:00:00');
+        return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      }
+
+      function truncate(str, len) {
+        if (!str) return '';
+        return str.length > len ? str.substring(0, len) + '...' : str;
+      }
+
+      function renderPage(page) {
+        currentPage = page;
+        var start = (page - 1) * POSTS_PER_PAGE;
+        var pagePosts = posts.slice(start, start + POSTS_PER_PAGE);
+
+        grid.innerHTML = pagePosts.map(function (post) {
+          return '<article class="blog-card">' +
+            '<a href="' + post.url + '"><img src="' + post.image + '" alt="' + post.title.replace(/"/g, '&quot;') + '" loading="lazy"></a>' +
+            '<div class="blog-card-body">' +
+              '<div class="blog-card-meta">' +
+                (post.category ? '<span class="category-pill">' + post.category + '</span>' : '') +
+                '<span class="card-date">' + formatDate(post.date) + '</span>' +
+              '</div>' +
+              '<h2><a href="' + post.url + '">' + post.title + '</a></h2>' +
+              '<p class="blog-card-excerpt">' + truncate(post.description, 140) + '</p>' +
+              '<a href="' + post.url + '" class="read-more">Read More &rarr;</a>' +
+            '</div>' +
+          '</article>';
+        }).join('');
+
+        renderPagination();
+      }
+
+      function renderPagination() {
+        var totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+        if (totalPages <= 1) {
+          pagination.style.display = 'none';
+          return;
+        }
+        pagination.style.display = 'flex';
+        var html = '<button ' + (currentPage === 1 ? 'disabled' : '') + ' onclick="blogNav(' + (currentPage - 1) + ')">&larr; Prev</button>';
+        for (var i = 1; i <= totalPages; i++) {
+          html += '<button class="' + (i === currentPage ? 'active' : '') + '" onclick="blogNav(' + i + ')">' + i + '</button>';
+        }
+        html += '<button ' + (currentPage === totalPages ? 'disabled' : '') + ' onclick="blogNav(' + (currentPage + 1) + ')">Next &rarr;</button>';
+        pagination.innerHTML = html;
+      }
+
+      window.blogNav = function (page) {
+        renderPage(page);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      fetch('posts.json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          posts = data;
+          loading.style.display = 'none';
+          if (posts.length === 0) {
+            empty.style.display = 'block';
+          } else {
+            grid.style.display = 'grid';
+            renderPage(1);
+          }
+        })
+        .catch(function () {
+          loading.style.display = 'none';
+          empty.style.display = 'block';
+        });
+    })();
+  </script>
+
+</body>
+</html>
