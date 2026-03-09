@@ -10,13 +10,17 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://exponentmarketing.com/blog/">
   <link rel="canonical" href="https://exponentmarketing.com/blog/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --accent: #1a56db;
-      --accent-hover: #1447b8;
-      --text: #1f2937;
+      --accent: #4cc1ce;
+      --accent-hover: #3aabb8;
+      --text: #111827;
       --text-light: #6b7280;
-      --bg: #f9fafb;
+      --bg: #fefefe;
+      --bg-dark: #0c1414;
       --card-bg: #ffffff;
       --radius: 12px;
     }
@@ -24,35 +28,61 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       color: var(--text);
       background: var(--bg);
       min-height: 100vh;
     }
 
-    /* Header */
-    .blog-header {
-      background: #111827;
-      color: #fff;
-      padding: 64px 20px;
+    /* Nav */
+    .blog-nav {
+      background: var(--bg-dark);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .blog-nav-logo img {
+      height: 48px;
+      width: auto;
+      display: block;
+    }
+
+    .blog-nav-back {
+      color: #fefefe;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    .blog-nav-back:hover {
+      opacity: 1;
+    }
+
+    /* Hero */
+    .blog-hero {
+      background: var(--bg-dark);
+      color: #fefefe;
+      padding: 64px 20px 72px;
       text-align: center;
     }
 
-    .blog-header h1 {
-      font-size: 40px;
+    .blog-hero h1 {
+      font-size: 44px;
       font-weight: 800;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
     }
 
-    .blog-header h1 span {
-      color: var(--accent);
-    }
-
-    .blog-header p {
+    .blog-hero p {
       font-size: 18px;
       color: #9ca3af;
-      max-width: 560px;
+      max-width: 520px;
       margin: 0 auto;
+      line-height: 1.6;
     }
 
     /* Grid */
@@ -73,15 +103,16 @@
       background: var(--card-bg);
       border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #e5e7eb;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
       display: flex;
       flex-direction: column;
     }
 
     .blog-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+      border-color: var(--accent);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
     }
 
     .blog-card img {
@@ -107,7 +138,7 @@
 
     .category-pill {
       background: var(--accent);
-      color: #fff;
+      color: #0c1414 !important;
       padding: 3px 12px;
       border-radius: 20px;
       font-size: 12px;
@@ -125,6 +156,7 @@
       font-size: 20px;
       line-height: 1.4;
       margin-bottom: 10px;
+      font-weight: 700;
     }
 
     .blog-card h2 a {
@@ -164,8 +196,9 @@
     }
 
     .pagination button {
+      font-family: 'Inter', sans-serif;
       padding: 10px 18px;
-      border: 1px solid #d1d5db;
+      border: 1px solid #e5e7eb;
       background: var(--card-bg);
       border-radius: 8px;
       font-size: 15px;
@@ -181,8 +214,9 @@
 
     .pagination button.active {
       background: var(--accent);
-      color: #fff;
+      color: #0c1414 !important;
       border-color: var(--accent);
+      font-weight: 600;
     }
 
     .pagination button:disabled {
@@ -215,9 +249,15 @@
     }
 
     @media (max-width: 600px) {
-      .blog-header { padding: 48px 20px; }
-      .blog-header h1 { font-size: 30px; }
-      .blog-header p { font-size: 16px; }
+      .blog-nav {
+        padding: 12px 16px;
+      }
+      .blog-nav-logo img {
+        height: 40px;
+      }
+      .blog-hero { padding: 48px 20px 56px; }
+      .blog-hero h1 { font-size: 32px; }
+      .blog-hero p { font-size: 16px; }
       .blog-grid { grid-template-columns: 1fr; gap: 24px; }
       .blog-container { padding: 32px 16px 60px; }
     }
@@ -225,8 +265,15 @@
 </head>
 <body>
 
-  <header class="blog-header">
-    <h1>Exponent <span>Blog</span></h1>
+  <nav class="blog-nav">
+    <a href="https://exponentmarketing.com" class="blog-nav-logo">
+      <img src="https://i0.wp.com/exponentmarketing.com/wp-content/uploads/2024/07/Copy-of-Heading.png?fit=550%2C550&ssl=1" alt="Exponent Marketing & AI">
+    </a>
+    <a href="https://exponentmarketing.com" class="blog-nav-back">&larr; Back to exponentmarketing.com</a>
+  </nav>
+
+  <header class="blog-hero">
+    <h1>Blog</h1>
     <p>Marketing tips, AI insights, and growth strategies for local businesses.</p>
   </header>
 
@@ -264,20 +311,32 @@
         return str.length > len ? str.substring(0, len) + '...' : str;
       }
 
+      function stripPipe(title) {
+        if (!title) return '';
+        var idx = title.indexOf('|');
+        return idx > -1 ? title.substring(0, idx).trim() : title;
+      }
+
+      function getImagePath(post) {
+        return '/blog/posts/images/' + post.slug + '.jpg';
+      }
+
       function renderPage(page) {
         currentPage = page;
         var start = (page - 1) * POSTS_PER_PAGE;
         var pagePosts = posts.slice(start, start + POSTS_PER_PAGE);
 
         grid.innerHTML = pagePosts.map(function (post) {
+          var displayTitle = stripPipe(post.title);
+          var imgSrc = getImagePath(post);
           return '<article class="blog-card">' +
-            '<a href="' + post.url + '"><img src="' + post.image + '" alt="' + post.title.replace(/"/g, '&quot;') + '" loading="lazy"></a>' +
+            '<a href="' + post.url + '"><img src="' + imgSrc + '" alt="' + displayTitle.replace(/"/g, '&quot;') + '" loading="lazy" onerror="this.src=\'/blog/posts/images/default.jpg\'"></a>' +
             '<div class="blog-card-body">' +
               '<div class="blog-card-meta">' +
                 (post.category ? '<span class="category-pill">' + post.category + '</span>' : '') +
                 '<span class="card-date">' + formatDate(post.date) + '</span>' +
               '</div>' +
-              '<h2><a href="' + post.url + '">' + post.title + '</a></h2>' +
+              '<h2><a href="' + post.url + '">' + displayTitle + '</a></h2>' +
               '<p class="blog-card-excerpt">' + truncate(post.description, 140) + '</p>' +
               '<a href="' + post.url + '" class="read-more">Read More &rarr;</a>' +
             '</div>' +
